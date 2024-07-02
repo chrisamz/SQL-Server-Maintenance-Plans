@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MaintenancePlan xmlns="http://schemas.microsoft.com/sqlserver/dts/Tasks/MaintenancePlan/">
+  <DTS:Executable ID="MaintenancePlan" TaskName="MaintenancePlan" DTS:CreationDate="2024-06-25T12:00:00">
+    <DTS:Property Name="Name">Database Maintenance Plan</DTS:Property>
+    <DTS:Property Name="Description">This maintenance plan performs regular backups, integrity checks, and index optimizations.</DTS:Property>
+    <DTS:Executable ID="BackupTask" TaskName="BackupTask" DTS:CreationDate="2024-06-25T12:00:00">
+      <DTS:Property Name="Connection">DatabaseConnection</DTS:Property>
+      <DTS:Property Name="BackupDirectory">C:\Backups</DTS:Property>
+      <DTS:Property Name="BackupType">Full</DTS:Property>
+      <DTS:Property Name="Name">Full Backup</DTS:Property>
+      <DTS:Property Name="Description">Performs a full backup of the database.</DTS:Property>
+    </DTS:Executable>
+    <DTS:Executable ID="IntegrityCheckTask" TaskName="IntegrityCheckTask" DTS:CreationDate="2024-06-25T12:00:00">
+      <DTS:Property Name="Connection">DatabaseConnection</DTS:Property>
+      <DTS:Property Name="Name">Integrity Check</DTS:Property>
+      <DTS:Property Name="Description">Performs database integrity checks.</DTS:Property>
+    </DTS:Executable>
+    <DTS:Executable ID="IndexOptimizationTask" TaskName="IndexOptimizationTask" DTS:CreationDate="2024-06-25T12:00:00">
+      <DTS:Property Name="Connection">DatabaseConnection</DTS:Property>
+      <DTS:Property Name="Name">Index Optimization</DTS:Property>
+      <DTS:Property Name="Description">Reorganizes and rebuilds indexes.</DTS:Property>
+    </DTS:Executable>
+    <DTS:ConnectionManager ID="DatabaseConnection" Name="DatabaseConnection" ConnectionString="Data Source=YourServerName;Initial Catalog=YourDatabaseName;Integrated Security=SSPI;">
+      <DTS:Property Name="ObjectName">Database Connection</DTS:Property>
+      <DTS:Property Name="Description">Connection to the SQL Server database.</DTS:Property>
+    </DTS:ConnectionManager>
+  </DTS:Executable>
+</MaintenancePlan>
